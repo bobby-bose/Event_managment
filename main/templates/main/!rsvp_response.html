@@ -1,0 +1,44 @@
+<div class="rsvp-details  container-fluid m-0 p-0 mt-3">
+
+    <div class="d-flex">
+        <input class="m-0" readonly type="text" value="{{the_event.rsvp_url}}">
+        <button class=" btn btn-secondary   btn-sm mt-0 m-0" id="copyBtn">
+            <i class="fa fa-copy"></i>
+        </button>
+
+    </div>
+     <span class=" d-block badge   text-left" id="copied"></span>
+    <div class="mt-3">
+        <a class="text-decoration-none text-reset btn btn-success btn-sm mb-3"
+           href="https://wa.me/?text=Hey%20you%20have%20been%20invited%20to%20{{the_event.name}}%20{{quote_string}}">
+            <i aria-hidden="true" class="fa fa-whatsapp text-light"> WhatsApp</i>
+        </a>
+        <a class="btn btn-info mb-3 btn-sm"
+           href="mailto:?&subject=Hey%20you%20have%20been%20invited%20to%20{{the_event.name}}%20event&body={{quote_string}}">
+            <i aria-hidden="true" class="fa fa-envelope"> mail</i>
+        </a>
+    </div>
+
+    <div class="row text-dark">
+         {% if rsvp_responses %}
+        {% for res in rsvp_responses %}
+        <div class="col-xs-1-12 m-2">
+            <div class="card bg-dark text-light border-light">
+                <div class="card-body">
+                    <h3 class="card-title">{{res.name}}</h3>
+                    <p class="card-text">{{res.email}}</p>
+                    <p class="card-text "> response:{{res.response}}</p>
+                    <p class="card-text">guests:{{res.guest_number}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="col-xs-1-12 m-2">
+        <div class="text-light">No responses till now</div>
+        </div>
+        {% endif %}
+    </div>
+
+
+</div>

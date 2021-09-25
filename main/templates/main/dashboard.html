@@ -1,0 +1,317 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} dashboard {% endblock title %}
+
+{% block style %}
+
+<!--<style>-->
+<!--.dashboard-empty-img{-->
+<!--    width:100%;-->
+<!--    object-fit:cover;-->
+<!--}-->
+<!--#copyBtn{-->
+<!--        border-radius:0px !important;-->
+<!--    }-->
+<!-- ::-webkit-scrollbar {-->
+<!--  width: 0.2rem;-->
+<!--}-->
+
+<!--::-webkit-scrollbar-track {-->
+<!--  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);-->
+<!--}-->
+
+<!--::-webkit-scrollbar-thumb {-->
+<!--margin:100px;-->
+<!--  background-color: white;-->
+<!--  outline: 1px solid white;-->
+<!--}-->
+<!--    .dashboard {-->
+<!--  font-size: 1rem;-->
+
+<!--}-->
+<!--.event-details > div{-->
+
+<!--    margin-bottom:10px;-->
+<!--}-->
+
+<!--.event-item{-->
+
+<!--            background-image: linear-gradient(to right, #457fca 0%, #5691c8  51%, #457fca  100%);-->
+<!--            text-align: left;-->
+<!--            text-transform: uppercase;-->
+<!--            transition: 0.5s;-->
+<!--            background-size: 200% auto;-->
+<!--            color: white;-->
+<!--            box-shadow: 0 0 20px #eee;-->
+<!--            border-radius: 10px;-->
+<!--            font-size:0.8rem;-->
+<!--}-->
+<!--.event-item:hover {-->
+<!--            background-position: right center; /* change the direction of the change here */-->
+<!--            color: #fff;-->
+<!--            text-decoration: none;-->
+<!--          }-->
+<!--.event-list{-->
+<!--    overflow:auto;-->
+<!--    height:auto;-->
+<!--    max-height:30vh;-->
+<!--    }-->
+<!--.event-list>a{-->
+<!--    height:5vh;-->
+<!--    margin-bottom:10px;-->
+<!--}-->
+<!--.date{-->
+<!--    color:rgba(255,255,255,0.8);-->
+<!--    font-size:0.6rem;-->
+<!--}-->
+
+<!--@media screen and (min-width: 680px) {-->
+<!--.event-item{-->
+<!-- font-size: 0.75rem;-->
+<!--}-->
+<!-- .dashboard {-->
+<!--   padding:100px !important;-->
+<!--}-->
+<!--.date{-->
+<!--    color:rgba(255,255,255,0.8);-->
+<!--    font-size:0.8rem;-->
+<!--}-->
+<!--.event-navbar{-->
+<!--    justify-content:flex-start !important;-->
+<!--}-->
+<!--.event-navbar > div{-->
+<!--    margin-right:10px;-->
+<!--}-->
+<!--}-->
+
+<!--&lt;!&ndash; rsvp details &ndash;&gt;-->
+<!--    .dashboard {-->
+<!--  font-size: 1rem;-->
+
+<!--}-->
+<!--.rsvp-details > div{-->
+<!--    overflow:auto;-->
+<!--    margin-bottom:10px;-->
+<!--}-->
+<!--.rsvp-details>div>div{-->
+<!--    overflow:auto;-->
+<!--}-->
+<!--.event-list>a{-->
+<!--    margin-bottom:10px;-->
+<!--}-->
+
+<!--@media screen and (min-width: 680px) {-->
+<!-- .dashboard {-->
+<!--   padding:100px !important;-->
+<!--}-->
+<!--.event-navbar{-->
+<!--    justify-content:flex-start !important;-->
+<!--}-->
+<!--.event-navbar > a{-->
+<!--    margin-right:10px !important;-->
+<!--}-->
+<!--}-->
+<!--.container-wrapper{-->
+<!--border-radius:20px;-->
+<!--background:rgba(255,255,255);  -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */-->
+<!--  -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */-->
+<!--  box-shadow:         3px 3px 5px 6px #ccc;-->
+<!--}-->
+<!--&lt;!&ndash;create event &ndash;&gt;-->
+<!--&lt;!&ndash;-rsvp&ndash;&gt;-->
+
+
+<!--</style>-->
+<style>
+ ::-webkit-scrollbar {
+  width: 0.1rem;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  margin:10px;
+  background-color: white;
+  outline: 1px solid white;
+}
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+
+}
+.dashboard__wrapper{
+
+padding:10px;
+    margin-top:30px;
+ grid-column:1/13;
+ display:grid;
+ grid-template-columns:repeat(12,1fr);
+}
+.dashboard__left{
+
+grid-column:1/5;
+
+}
+
+.dashboard__right{
+    grid-column:6/13;
+}
+.dashboard__navbar{
+    display:flex;
+    justify-content:flex-start;
+}
+.dashboard__eventitem{
+
+   margin:10px;
+   padding:10px;
+   color:#000;
+   display:flex;
+   justify-content:space-between;
+   -webkit-box-shadow: 3px 1px 4px 0px rgba(0, 0, 0, 0.75);
+-moz-box-shadow:    3px 1px 4px 0px rgba(0, 0, 0, 0.75);
+box-shadow:         3px 1px 4px 0px rgba(0, 0, 0, 0.75);
+}
+.dashboard__navbar_item{
+margin-right:10px;
+padding:3px;
+border:1px solid #000;
+cursor:pointer;
+}
+.dashboard__navbar_item:hover{
+background-color:#fafafa;
+}
+@media screen and (max-width:768px){
+.dashboard__wrapper{
+     grid-template-rows:auto auto;
+
+}
+.dashboard__left{
+    grid-column:1/13;
+    grid-row:1;
+}
+.dashboard__right{
+border-top:1px solid #000;
+padding-top:10px;
+margin-top:10px;
+grid-column:1/13;
+    grid-row:2;
+}
+.dashboard__navbar{
+
+justify-content:space-between;
+}
+.dashboard__navbar_item{
+font-size:small;
+margin-right:10px;
+}
+}
+</style>
+{% endblock style %}
+{% block content %}
+    {% include 'main/!navbar.html'  %}
+
+<div class="dashboard">
+    <div class="dashboard__wrapper">
+        <div class="dashboard__left ">
+            <h4>Your events</h4>
+            <div class="dashboard__eventlist">
+                {% for event in events %}
+                <a  class=""
+                   href="{% url 'dashboard' event.slug %}">
+                    <div class="dashboard__eventitem">
+                            <span>{{event.name}}</span>
+                            <span>{{event.date_created.date}}</span>
+                    </div>
+
+                </a>
+                {% empty %}
+                <a class="btn border btn-dark" href="{% url 'create_event' %}">Create your event</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="dashboard__right ">
+
+
+            {% for message in messages %}
+            <div class="alert alert-info">{{message}}</div>
+            {% endfor %}
+            {% if the_event %}
+            <div class="dashboard__navbar">
+                <a class="dashboard__navbar_item" id="eventDetailsBtn">Event details</a>
+                <a class="dashboard__navbar_item" id="rsvpResponseBtn">RSVP</a>
+                <a class="dashboard__navbar_item" id="summaryBtn">Summary</a>
+                <button class="btn btn-danger btn-sm " data-target="#exampleModal" data-toggle="modal" type="button">
+                    <i aria-hidden="true" class="fa fa-trash"></i>
+                </button>
+
+
+            </div>
+            <div class="">
+                <div id="eventDetails" >
+                    {% include 'main/!event_details.html' %}
+                </div>
+                <div class="collapse" id="rsvpResponse" >
+                    {% include 'main/!rsvp_response.html' %}
+                </div>
+                <div class="collapse" id="summary" >
+                    {% include 'main/!summary.html' %}
+                </div>
+            </div>
+            {% else %}
+
+
+            {% endif %}
+</div>
+        </div>
+    </div>
+
+{% if the_event %}
+{% include 'main/!delete_event_modal.html'  %}
+{% endif %}
+{% endblock content %}
+
+{% block script %}
+<script>
+    $('#eventDetailsBtn').on('click',function(){
+    $('#eventDetails').removeClass('collapse');
+
+    $('#rsvpResponse').addClass('collapse');
+    $('#summary').addClass('collapse');
+
+})
+ $('#rsvpResponseBtn').on('click',function(){
+    $('#rsvpResponse').removeClass('collapse');
+    $('#eventDetails').addClass('collapse');
+    $('#summary').addClass('collapse');
+
+})
+$('#summaryBtn').on('click',function(){
+    $('#summary').removeClass('collapse');
+    $('#eventDetails').addClass('collapse');
+    $('#rsvpResponse').addClass('collapse');
+
+})
+
+<!--copyurl-->
+
+
+    function copyToClipboard(element) {
+        $('input').select();
+        document.execCommand("copy");
+        $('#copied').text('url copied');
+    }
+
+    $('#copyBtn').on('click',function(){
+        copyToClipboard();
+    })
+
+$(".dltBtn").on('click',function( event ) {
+    $(".dltBtn").addClass('disabled');
+});
+
+
+
+</script>
+{% endblock script %}

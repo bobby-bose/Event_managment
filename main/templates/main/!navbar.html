@@ -1,0 +1,41 @@
+<div class="topbar" id="topbar">
+    <div class="topbar__left">
+        <div class="topbar__left_logo">
+            <a class="text-decoration-none text-reset" href="{% url 'index' %}">Event Manager</a>
+        </div>
+    </div>
+    <div class="topbar__center">
+        <div class="topbar__center_item">
+            <a  class="text-decoration-none text-reset" href="{% url 'dashboard'  %}">My Dashboard</a>
+        </div>
+
+        <div class="topbar__center_item">
+             <a class="text-decoration-none text-reset"  href="{% url 'create_event' %}">Create Events</a>
+        </div>
+        {% if request.user.is_authenticated %}
+        <div class="topbar__center_item">
+          <a  class="text-decoration-none text-reset" href="{% url 'account_logout' %}">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    logout</a>
+        </div>
+        {% else %}
+           <div class="topbar__center_item">
+          <a  class="text-decoration-none text-reset" href="{% url 'account_login' %}">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i>
+                    Login</a>
+        </div>
+        {% endif %}
+    </div>
+    <div class="topbar__right">
+
+  </a>
+    </div>
+
+</div>
+
+
+
+
+
+
+

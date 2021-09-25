@@ -1,0 +1,16 @@
+<div class="event-details  container-fluid m-0 p-0 mt-3">
+    <div class="h4">{{the_event.name}}</div>
+     {% if the_event.ended  %}
+     <div class="badge badge-secondary">The event has already ended</div>
+    {% endif %}
+    <div>
+        <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+        <span class="text-light"> start date :</span>{{the_event.start_date}}</div>
+    <div>
+        <i class="fa fa-calendar-minus-o" aria-hidden="true"></i>
+        <span class="text-light">end date :</span>{{the_event.end_date}}</div>
+    <div>{{the_event.location}}</div>
+    <div>{{the_event.description}}
+    </div>
+
+</div>

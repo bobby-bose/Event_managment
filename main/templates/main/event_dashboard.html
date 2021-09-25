@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block title %} Event Dashboard {% endblock title %}
+{% block style %}
+
+<style>
+  .event_dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .ed__discussionWrapper {
+    border: 1px solid red;
+  }
+  .ed__giftsWrapper {
+    border: 1px solid black;
+  }
+</style>
+
+{% endblock style %} {% block content %}
+<div class="event_dashboard">
+  <div class="ed__discussionWrapper">
+    {% for message in messages %}
+    <div>{{message.message}}</div>
+    {% endfor %}
+  </div>
+
+  <div class="ed__giftsWrapper">
+    hi {% for gift in gifts %}
+    <div>hi{{gift.link}}</div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}

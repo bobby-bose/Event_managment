@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %} index {% endblock title %}
+{% block style %}
+<style>
+    #copyBtn{
+        border-radius:0px !important;
+    }
+</style>
+{% endblock style %}
+
+{% block content %}
+{% include 'main/!navbar.html'  %}
+<div class="index container-fluid text-center mt-5 ">
+    {% include 'main/!alert-on.html'  %}
+    <p class="header-2">RSVP URL</p>
+    <span class=" d-block badge  mb-3 w-25 " id="copied"></span>
+    <div class="d-flex justify-content-center  align-items-center ">
+    <input readonly  name="" type="text" value="{{rsvp_event_url}}" >
+    <button class=" btn btn-secondary   btn-sm mt-0" id="copyBtn">click to copy</button>
+</div>
+    <p>sent this url to your guest's and view the responses on your dashboard</p>
+
+    <a class="text-decoration-none text-reset btn btn-success mb-3" href="https://wa.me/?text=Hey%20you%20have%20been%20invited%20to%20{{quote_string}}">
+        <i class="fa fa-whatsapp text-light" aria-hidden="true" > Share on WhatsApp</i>
+    </a>
+    <a class="btn btn-info mb-3" href="mailto:?&subject=Hey%20you%20have%20been%20invited%20to%20&body={{quote_string}},">
+        <i class="fa fa-envelope" aria-hidden="true"> mail to your guests</i>
+    </a>
+
+</div>
+
+</div>
+{% endblock content %}
+
+{% block script %}
+
+<script>
+
+    function copyToClipboard(element) {
+        $('input').select();
+        document.execCommand("copy");
+        $('#copied').text('url copied');
+    }
+
+    $('#copyBtn').on('click',function(){
+        copyToClipboard();
+    })
+
+</script>
+
+{% endblock script %}

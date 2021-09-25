@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} rsvp
+{% endblock title %}
+{% block style %}
+<style>
+
+.rsvp-head {
+  width:min(100%,30rem);
+  font-size: 2rem;
+  font-family: 'Purple Purse', cursive;
+}
+.rsvp-form{
+   width:min(100%,30rem);
+}
+
+
+
+
+
+
+
+</style>
+{% endblock style %}
+{% block content %}
+<div class="container-fluid  " >
+    <div class=" d-flex justify-content-center">
+        <h4 class="rsvp-head text-center pt-5">Hey, you have been invited to <span class="text-secondary">{{the_event.name}}</span>
+        </h4>
+    </div>
+    <div class="rsvp-form container bg-light p-2">
+        <p><span class="text-secondary badge ">Location:</span>{{the_event.location}}</p>
+
+    </div>
+    <form action="" method="POST" >
+        {% csrf_token %}
+    <div class="rsvp-form container mx-auto  p-2 rounded px-3" style="background:rgba(245,254,245,0.5);">
+        {% for message in messages %}
+        <div class="alert alert-success">{{message}}</div>
+        {% endfor %}
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input required type="text" name="name" id="name" placeholder="Your full name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input required type="email" name="email" id="email" placeholder="Your email address" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="attendence">Are you coming to the event ?</label>
+                    <select required name="attendence" id="attendence" class="form-control">
+                        <option selected value="yes">Yes I will</option>
+                        <option value="no">No, Unfortunately i cant make it</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="guest_number">How many of you will be attending the event ?</label>
+                    <input value="1" required placeholder="including you" type="number" name="guest_number" id="guest_number" class="form-control">
+                </div>
+                <p>{{the_event.description}}</p>
+
+        <input type="submit" value="sent your response" class="btn btn-primary btn-block">
+    </div>
+    </form>
+
+</div>
+{% endblock content %}
+
+{% block script %}
+<script>
+$("form ").on('submit',function( event ) {
+    $("input[type=submit]").addClass('disabled');
+
+});
+
+</script>
+{% endblock script %}
