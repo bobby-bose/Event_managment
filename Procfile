@@ -1,2 +1,1 @@
-web: gunicorn Event_managment.wsgi --log-file -
-
+web: gunicorn project.wsgi --log-file -
